@@ -27,12 +27,12 @@
 
 .table_component td {
     border: 1px solid #ffffff;
-    background-color: #3d3e5c;
+    background-color: #292a41;
     color: #ffffff;
     padding: 5px;
 }
 
-.box {
+.fit-w-400px {
     width: fit-content !important;
     position: relative;
 }
@@ -59,7 +59,7 @@ td:nth-child(6) {
 
 #modal-cont {
     z-index: 2;
-    background-color: rgb(145, 61, 194) 0.5 !important;
+    background-color: rgb(87 87 87 / 50%) !important;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -121,4 +121,14 @@ td:nth-child(6) {
 
 .switch input:checked+.slider:before {
     transform: translateX(1.5em);
+}
+
+.act-btn {
+    color: #03a9f4;
+    font-size: 12px;
+    margin-bottom: 5px !important;
+}
+
+.input-btn {
+    margin-bottom: 30px;
 }

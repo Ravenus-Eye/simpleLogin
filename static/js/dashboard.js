@@ -1,7 +1,7 @@
 function showModal(e) {
     console.log("eid: ", e.getAttribute("data-ID"))
     let eDetails = `
-        <div class="box">
+        <div class="box max-width-400 w-100">
             <div>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"
                     class="left-arrow" onclick="hideModal()">
@@ -31,13 +31,14 @@ function showModal(e) {
                 <input type=text name=password value=${e.getAttribute("data-password")} required>
                 <label>Password</label>
             </div>
-            <div class="input-box">
-                <input type=text name=active value=${e.getAttribute("data-active")} required>
+            <div class="input-box" hidden>
+                <input type=text id="active" name=active value=${e.getAttribute("data-active")} required>
                 <label>Active</label>
             </div>
-            <div>
+            <div class="input-btn">
+                <p class="act-btn">Active</p>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="active-btn" name="active-btn" type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -46,14 +47,61 @@ function showModal(e) {
         </div>
     `;
     let modal = document.getElementById("modal-cont");
+
+
     modal.innerHTML = eDetails;
     modal.removeAttribute("hidden")
+    let btn = document.getElementById("submit");
+    btn.style.backgroundColor = "grey";
+
+    let state = false;
+    if (e.getAttribute("data-active") == "true") {
+        state = true;
+    }
+
+    let btnState = document.getElementById("active-btn");
+    if (state) {
+        btnState.checked = true;
+    } else {
+        btnState.checked = false
+    }
+
 
     document.querySelectorAll(".input-box input").forEach((value) => {
         value.addEventListener("change", () => {
-            document.getElementById("submit").removeAttribute("disabled")
+            let btn = document.getElementById("submit");
+            btn.removeAttribute("disabled");
+            btn.style.backgroundColor = "#03a9f4";
         });
-    })
+    });
+
+    btnState.addEventListener("click", () => {
+        let btn = document.getElementById("submit");
+        btn.removeAttribute("disabled");
+        btn.style.backgroundColor = "#03a9f4";
+        if (state) {
+            state = false;
+            btnState.checked = false;
+            document.getElementById("active").setAttribute("value", "false")
+        } else {
+            state = true;
+            btnState.checked = true;
+            document.getElementById("active").setAttribute("value", "true")
+        }
+    });
+
+
+    var modalElem = document.querySelectorAll(".box")[1];
+    let click = 0;
+    window.onclick = function (e) {
+        click++;
+        if (click > 1) {
+            if (!modalElem.contains(e.target)) {
+                click = 0;
+                modal.setAttribute("hidden", "hidden");
+            }
+        }
+    }
 }
 
 function hideModal() {

@@ -135,7 +135,6 @@ func UpdatePassword(db *sql.DB, username, password string) error {
 
 func UpdateUserDetails(db *sql.DB, id int, key, value string) error {
 	query := `UPDATE users SET ` + key + ` = ? WHERE id = ?`
-	fmt.Println("query: ", query)
 	if key == "active" {
 		value, _ := strconv.ParseBool(value)
 		_, err := db.Exec(query, value, id)
