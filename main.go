@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/daambrocio/simple_login/api"
 	"github.com/daambrocio/simple_login/views"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -47,13 +46,9 @@ func main() {
 		views.WelcomeHandler(w, r, db)
 	})
 	http.HandleFunc("/logout/", views.LogoutHandler)
-	// Setup HTTP routes and handlers
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		api.APIHandler(w, r, db)
-	})
 
-	log.Println("Server started on :7891")
-	err = http.ListenAndServe(":7891", nil)
+	log.Println("Server started on :8080")
+	err = http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -62,8 +57,7 @@ func main() {
 
 func Database() (db *sql.DB, err error) {
 	// Open a connection to the database
-	// db, err = sql.Open("mysql", "{db Username}:{db Password}@tcp(127.0.0.1:3306)/portal")
-	db, err = sql.Open("mysql", "root:Allen is Great 200%@tcp(0.0.0.0:3306)/portal")
+	db, err = sql.Open("mysql", "{db Username}:{db Password}@tcp(127.0.0.1:3306)/portal")
 	if err != nil {
 		fmt.Printf("%v\n", err.Error())
 	}
@@ -73,7 +67,6 @@ func Database() (db *sql.DB, err error) {
 	} else {
 		fmt.Println("Successfully connected to database.")
 	}
-
 	return db, err
 }
 
