@@ -38,8 +38,23 @@ body {
     max-width: 400px;
 }
 
+.eye-pass {
+    width: 25px;
+}
+
 .w-100 {
     width: 100%;
+}
+
+.password::after {
+    display: flex;
+    content: '';
+    position: absolute;
+    right: 1px;
+    top: 10px;
+    width: 25px;
+    height: 25px;
+    background-image: var(--background-image, url('/static/images/eyeclose.svg'));
 }
 
 .box h2 {

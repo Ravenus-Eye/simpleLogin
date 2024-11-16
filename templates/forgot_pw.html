@@ -24,28 +24,26 @@
                 </svg>
             </div>
             <h2>Change Password</h2>
-            <form action="/change_password/" method="POST">
+            <div>
                 <div class="input-box">
                     <input id="user-name" type="text" name="username" required>
                     <label>Username</label>
                 </div>
-                <div class="input-box">
+                <div class="input-box password">
                     <input id="user-pass1" type="password" name="password1" required>
                     <label>New Password</label>
                 </div>
-                <div class="input-box">
+                <div class="input-box password">
                     <input id="user-pass2" type="password" name="password2" required>
                     <label>Confirm Password</label>
                 </div>
-                <input id="submit" type="submit" name="" value="Submit">
-            </form>
+                <div id="error-msg" style="color:white;margin-bottom: 10px;" hidden></div>
+                <input id="submit" type="submit" name="" value="Submit" onclick="changePass()">
+            </div>
         </div>
     </div>
 </body>
-<script>
-    function prevPage() {
-        window.history.back();
-    }
-</script>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/forgotPassword.js"></script>
 
 </html>
